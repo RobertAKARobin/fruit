@@ -8,3 +8,8 @@ sass:
 
 kramdown:
   auto_ids: false
+
+collections:
+  products:
+    output: true
+    sort_by: name
