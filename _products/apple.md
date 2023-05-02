@@ -1,5 +1,5 @@
 ---
 layout: product
-name: Apple
+title: Apple
 price: 1
 ---

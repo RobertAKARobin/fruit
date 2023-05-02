@@ -1,5 +1,5 @@
 ---
 layout: product
-name: Cantaloupe
+title: Cantaloupe
 price: 5
 ---

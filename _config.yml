@@ -1,4 +1,4 @@
-title: Grocery Store Analytics
+title: Bluth Fruit Company
 email: contact@robertakarobin.com
 baseurl: ""
 
@@ -13,3 +13,6 @@ collections:
   products:
     output: true
     sort_by: name
+  pages:
+    output: true
+    permalink: /:name
