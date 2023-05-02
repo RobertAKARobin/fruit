@@ -9,7 +9,7 @@ layout: base
 </header>
 
 <ul class="product-cards">
-	{% for product in site.products %}
+	{% for product in site.data.products %}
 		<li class="product-card">
 			<img
 				alt="Picture of {{ product.name }}"
@@ -27,6 +27,7 @@ layout: base
 
 			<button
 				class="product-card__addtocart"
+				data-product-add="{{ product.name }}"
 				type="button"
 			>Add to cart</button>
 		</li>

@@ -9,13 +9,4 @@ sass:
 kramdown:
   auto_ids: false
 
-products:
-- name: Apple
-  price: 2
-  description: Fresh, crisp, and juicy! These apples are hand-picked from our centuries-old family orchard.
-- name: Banana
-  price: 10
-  description: Packed with energy and electrolytes like potassium, bananas are the perfect on-the-go snack.
-- name: Cantaloupe
-  price: 5
-  description: One slice of this delcious melon provides you with your daily nutritional value of vitamin C!
+data_dir: assets/data
