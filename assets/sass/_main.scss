@@ -1,0 +1,188 @@
+$bp: 600px;
+
+$color__cta: #a30;
+$color__cta__raise: #c40;
+$color__cta__sink: #920;
+$color__highlight: #cba;
+$color__lowlight: #720;
+$color__text: #000;
+$color__text__ondark: #fff;
+
+$height__button: 40px;
+$height__navbar: 60px;
+$margin__x: 16px;
+
+@mixin bp-sm {
+	@media (max-width: #{$bp}) {
+		@content;
+	}
+}
+
+@mixin bp-lg {
+	@media (min-width: #{$bp + 1}) {
+		@content;
+	}
+}
+
+* {
+	background: transparent;
+	border: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: inherit;
+}
+
+:root {
+	color: $color__text;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+html {
+	display: contents;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+	min-height: 300px;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 54px;
+	margin: $margin__x 0;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 36px;
+	line-height: 40px;
+	margin: $margin__x 0;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 30px;
+	margin: $margin__x 0;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.navbar {
+	align-items: center;
+	background-color: #fff;
+	box-shadow: 0 0 0 2px $color__lowlight;
+	display: flex;
+	width: 100%;
+
+	a {
+		align-items: center;
+		color: $color__cta__sink;
+		display: inline-flex;
+		height: $height__navbar;
+		justify-content: center;
+		padding: 0 $margin__x;
+		text-decoration: underline;
+
+		&:hover {
+			color: $color__cta__raise;
+		}
+	}
+
+	&__spacer {
+		flex-grow: 1;
+	}
+}
+
+.footbar {
+	align-items: center;
+	background-color: $color__lowlight;
+	color: $color__text__ondark;
+	display: flex;
+	height: $height__navbar;
+	padding: 0 $margin__x;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Times New Roman', Times, serif;
+}
+
+main {
+	padding: $margin__x;
+}
+
+header {
+	text-align: center;
+}
+
+.product-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: $margin__x 0;
+}
+
+.product-card {
+	border-radius: 10px;
+	box-shadow: 0 0 0 2px $color__highlight;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: $margin__x;
+	overflow: hidden;
+	padding-bottom: $margin__x;
+	text-align: center;
+	width: 300px;
+
+	&__image {
+		aspect-ratio: 1 / 1;
+		width: 100%;
+	}
+
+	&__body {
+		flex-grow: 1;
+		padding: $margin__x;
+	}
+
+	&__addtocart {
+		align-items: center;
+		background-color: $color__cta;
+		border-radius: $height__button / 2;
+		color: $color__text__ondark;
+		cursor: pointer;
+		display: inline-flex;
+		height: $height__button;
+		margin: $margin__x;
+		padding: 0 $margin__x * 2;
+		text-align: center;
+		text-transform: uppercase;
+
+		&:hover {
+			background-color: $color__cta__raise;
+		}
+	}
+}

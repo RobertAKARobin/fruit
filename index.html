@@ -2,12 +2,33 @@
 layout: base
 ---
 
-<h1>{{ site.title }}</h1>
+<header>
+	<h1>Welcome to the {{ site.title }}</h1>
 
-<ul>
+	<h2>Our products:</h2>
+</header>
+
+<ul class="product-cards">
 	{% for product in site.products %}
-		<li>
-			<a href="{{ product.url }}">{{ product.title }}</a>
+		<li class="product-card">
+			<img
+				alt="Picture of {{ product.name }}"
+				class="product-card__image"
+				src="/assets/img/{{ product.name }}.jpg"
+			/>
+
+			<div class="product-card__body">
+				<h3>{{ product.name }}</h3>
+
+				<p>{{ product.description }}</p>
+			</div>
+
+			<p><strong>${{ product.price }}.00</strong></p>
+
+			<button
+				class="product-card__addtocart"
+				type="button"
+			>Add to cart</button>
 		</li>
 	{% endfor %}
 </ul>

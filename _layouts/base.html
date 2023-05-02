@@ -8,37 +8,19 @@
 		<link rel="stylesheet" href="/assets/index.css" />
 	</head>
 	<body>
-		<nav>
+		<nav class="navbar">
 			<a href="/">{{ site.title }}</a>
 
-			<div>
-				<p>Products</p>
+			<span class="navbar__spacer"></span>
 
-				<ul>
-					{% for product in site.products %}
-						<li>
-							<a href="{{ product.url }}">{{ product.title }}</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
-
-			<div>
-				<ul>
-					{% for page in site.pages %}
-						<li>
-							<a href="{{ page.url }}">{{ page.title }}</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
+			<a href="/cart">Cart</a>
 		</nav>
 
 		<main>
 			{{ content }}
 		</main>
 
-		<footer>
+		<footer class="footbar">
 			&copy;2023 Bluth Fruit Company
 		</footer>
 	</body>
