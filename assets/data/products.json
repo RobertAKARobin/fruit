@@ -2,7 +2,7 @@
 	{
 			"id": "apple",
 			"name": "Apple",
-			"price": 2,
+			"price": 5,
 			"description": "Fresh, crisp, and juicy! These apples are hand-picked from our centuries-old family orchard."
 	},
 	{
@@ -14,7 +14,7 @@
 	{
 			"id": "cantaloupe",
 			"name": "Cantaloupe",
-			"price": 5,
+			"price": 20,
 			"description": "One slice of this delcious melon provides you with your daily nutritional value of vitamin C!"
 	}
 ]
