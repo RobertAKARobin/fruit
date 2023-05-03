@@ -1,7 +1,7 @@
 //#region State
 const $base = document.querySelector(`base`);
-const base = $base?.getAttribute(`href`) || ``;
-const products = await (await fetch(`${base}assets/data/products.json`)).json();
+const baseHref = $base?.getAttribute(`href`) || `/`;
+const products = await (await fetch(`${baseHref}assets/data/products.json`)).json();
 const productsById = products.reduce((productsById, product) => {
 	productsById[product.id] = product;
 	return productsById;
@@ -107,17 +107,31 @@ window.handleAddtocart = function(event, productId, increment = 1) {
 }
 
 window.handleCartClear = function(event) {
-	const $cartClear = event.currentTarget;
+	const $button = event.currentTarget;
 
-	if ($cartClear.getAttribute(`disabled`) === `disabled`) {
+	if ($button.getAttribute(`disabled`) === `disabled`) {
 		return;
 	}
 
-	$cartClear.setAttribute(`disabled`, `disabled`);
+	$button.setAttribute(`disabled`, `disabled`);
 	setTimeout(() => {
 		cacheClear();
 		render();
-		$cartClear.removeAttribute(`disabled`);
+		$button.removeAttribute(`disabled`);
+	}, latency);
+}
+
+window.handleCheckout = function(event) {
+	const $button = event.currentTarget;
+
+	if ($button.getAttribute(`disabled`) === `disabled`) {
+		return;
+	}
+
+	$button.setAttribute(`disabled`, `disabled`);
+	setTimeout(() => {
+		cacheClear();
+		location.href = `${baseHref}thanks`;
 	}, latency);
 }
 //#endregion

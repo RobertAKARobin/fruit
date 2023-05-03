@@ -167,6 +167,21 @@ tfoot th {
 	font-weight: bold;
 }
 
+a {
+	align-items: center;
+	color: $color__cta__sink;
+	display: inline-flex;
+	height: $height__navbar;
+	justify-content: center;
+	padding: 0 $margin__x;
+	text-decoration: none;
+	transition: color .2s;
+
+	&:hover {
+		color: $color__cta__raise;
+	}
+}
+
 strong {
 	font-weight: bold;
 }
@@ -191,21 +206,6 @@ strong {
 	box-shadow: 0 0 0 2px $color__lowlight;
 	display: flex;
 	width: 100%;
-
-	a {
-		align-items: center;
-		color: $color__cta__sink;
-		display: inline-flex;
-		height: $height__navbar;
-		justify-content: center;
-		padding: 0 $margin__x;
-		text-decoration: none;
-		transition: color .2s;
-
-		&:hover {
-			color: $color__cta__raise;
-		}
-	}
 
 	&__spacer {
 		flex-grow: 1;
