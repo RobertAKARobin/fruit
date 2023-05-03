@@ -1,47 +1,121 @@
+//#region State
 const products = await (await fetch(`/assets/data/products.json`)).json();
 const productsById = products.reduce((productsById, product) => {
-	productsById[product.name] = product;
+	productsById[product.id] = product;
 	return productsById;
 }, {});
 
-const $cartCounter = document.querySelector(`[data-cart-counter]`);
-const $buttonAtcs = Array.from(document.querySelectorAll(`[data-product-add]`));
+const cacheKey = `cart`;
+const cache = tryOrNull(() => JSON.parse(localStorage.getItem(cacheKey))) || {};
 
-for (const $buttonAtc of $buttonAtcs) {
-	$buttonAtc.addEventListener(`click`, handleAtc);
+function cacheSet() {
+	localStorage.setItem(cacheKey, JSON.stringify(cache));
 }
 
-const cart = doTry(() => JSON.parse(localStorage.getItem(`cart`))) || {};
-setCartCount();
+function cacheClear() {
+	for (const property in cache) {
+		delete cache[property];
+	}
+	cacheSet();
+}
 
-function doTry(callback, catcher) {
-	try {
-		return callback();
-	} catch {
-		return catcher;
+//#endregion
+
+//#region View
+const latency = 300;
+const varMatcher = /\[\[\s*(.*?)\s*\]\]/g;
+
+const $cartCounter = document.querySelector(`[data-cart-counter]`);
+const $cartProducts = document.querySelector(`[data-cart-products]`);
+const $cartProductTemplate = document.querySelector(`[data-cart-product-template]`);
+const $cartTotal = document.querySelector(`[data-cart-total]`);
+
+const cartProductTemplate = $cartProductTemplate?.innerHTML;
+
+render();
+
+function render() {
+	const state = {
+		cartProductsById: {},
+		totalCost: 0,
+		totalQuantity: 0,
+	};
+
+	for (const [productId, quantity] of Object.entries(cache)) {
+		const cartProduct = {
+			...productsById[productId],
+			quantity,
+		};
+		cartProduct.cost = (cartProduct.price * cartProduct.quantity);
+		state.cartProductsById[productId] = cartProduct;
+		state.totalQuantity += cartProduct.quantity;
+		state.totalCost += cartProduct.cost;
+	}
+
+	$cartCounter.textContent = state.totalQuantity === 0 ? '' : state.totalQuantity;
+
+	if ($cartProducts) {
+		let innerHTML = ``;
+		const cartProducts = Object.values(state.cartProductsById).sort((a, b) => a.id > b.id ? 1 : -1);
+		for (const cartProduct of cartProducts) {
+			innerHTML += cartProductTemplate.replace(varMatcher, (_nil, property) => {
+				return cartProduct[property];
+			});
+		}
+		$cartProducts.innerHTML = innerHTML;
+	}
+
+	if ($cartTotal) {
+		$cartTotal.textContent = state.totalCost;
 	}
 }
 
-function handleAtc(event) {
+//#endregion
+
+//#region Util
+function tryOrNull(callback) {
+	try {
+		return callback();
+	} catch {
+		return null;
+	}
+}
+
+//#endregion
+
+//#region Handlers
+window.handleAddtocart = function(event, productId, increment = 1) {
 	const $button = event.currentTarget;
+
 	if ($button.getAttribute(`disabled`) === `disabled`) {
 		return;
 	}
 
-	const productName = $button.getAttribute(`data-product-add`);
 	$button.setAttribute(`disabled`, `disabled`);
 
 	setTimeout(() => {
+		cache[productId] = (cache[productId] || 0) + increment;
+		if (cache[productId] <= 0) {
+			delete cache[productId];
+		}
+		cacheSet();
+		render();
 		$button.removeAttribute(`disabled`);
-		cart[productName] = (cart[productName] || 0) + 1;
-		localStorage.setItem(`cart`, JSON.stringify(cart));
-		setCartCount();
-	}, 800);
+	}, latency);
 }
 
-function setCartCount() {
-	const cartCount = products.reduce((cartCount, product) => {
-		return cartCount + (cart[product.name] || 0);
-	}, 0);
-	$cartCounter.textContent = cartCount === 0 ? '' : cartCount;
+window.handleCartClear = function(event) {
+	const $cartClear = event.currentTarget;
+
+	if ($cartClear.getAttribute(`disabled`) === `disabled`) {
+		return;
+	}
+
+	$cartClear.setAttribute(`disabled`, `disabled`);
+	setTimeout(() => {
+		cacheClear();
+		render();
+		$cartClear.removeAttribute(`disabled`);
+	}, latency);
 }
+//#endregion

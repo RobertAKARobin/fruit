@@ -14,7 +14,7 @@ layout: base
 			<img
 				alt="Picture of {{ product.name }}"
 				class="product-card__image"
-				src="/assets/img/{{ product.name }}.jpg"
+				src="/assets/img/{{ product.id }}.jpg"
 			/>
 
 			<div class="product-card__body">
@@ -27,7 +27,7 @@ layout: base
 
 			<button
 				class="product-card__addtocart"
-				data-product-add="{{ product.name }}"
+				onclick="handleAddtocart(event, '{{ product.id }}')"
 				type="button"
 			>Add to cart</button>
 		</li>

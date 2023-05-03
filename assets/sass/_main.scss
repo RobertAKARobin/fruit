@@ -60,6 +60,57 @@ body {
 main {
 	flex-grow: 1;
 	min-height: 300px;
+	padding: $margin__x;
+}
+
+header {
+	text-align: center;
+}
+
+button {
+	align-items: center;
+	background-color: $color__cta;
+	border-radius: $height__button / 2;
+	color: $color__text__ondark;
+	cursor: pointer;
+	display: inline-flex;
+	height: $height__button;
+	justify-content: center;
+	margin: $margin__x 0;
+	padding: 0 $margin__x * 2;
+	text-align: center;
+	text-transform: uppercase;
+	transition: color .2s, background-color .2s;
+
+	&:hover:not(:disabled) {
+		background-color: $color__cta__raise;
+	}
+
+	&:disabled {
+		background-color: #bbb;
+		color: #ddd;
+		cursor: wait;
+	}
+
+	&.button {
+		&--lowlight {
+			background-color: transparent;
+			color: $color__cta__sink;
+
+			&:hover:not(:disabled) {
+				background-color: $color__highlight;
+			}
+
+			&:disabled {
+				color: #999;
+			}
+		}
+
+		&--icon {
+			padding: 0;
+			width: $height__button;
+		}
+	}
 }
 
 h1 {
@@ -83,33 +134,56 @@ h3 {
 	margin: $margin__x 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Times New Roman', Times, serif;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ccc;
+	padding: ($margin__x / 2) $margin__x;
+	text-align: left;
+
+	&.cell {
+		&--number {
+			text-align: right;
+		}
+	}
+}
+
+thead th,
+tfoot th {
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+}
+
 strong {
 	font-weight: bold;
 }
 
-button {
+.buttonset {
+	display: flex;
+	column-gap: $margin__x;
+}
+
+.footbar {
 	align-items: center;
-	background-color: $color__cta;
-	border-radius: $height__button / 2;
+	background-color: $color__lowlight;
 	color: $color__text__ondark;
-	cursor: pointer;
-	display: inline-flex;
-	height: $height__button;
-	margin: $margin__x;
-	padding: 0 $margin__x * 2;
-	text-align: center;
-	text-transform: uppercase;
-	transition: color .2s, background-color .2s;
-
-	&:hover:not(:disabled) {
-		background-color: $color__cta__raise;
-	}
-
-	&:disabled {
-		background-color: #bbb;
-		color: #ddd;
-		cursor: wait;
-	}
+	display: flex;
+	height: $height__navbar;
+	padding: 0 $margin__x;
 }
 
 .navbar {
@@ -137,32 +211,6 @@ button {
 	&__spacer {
 		flex-grow: 1;
 	}
-}
-
-.footbar {
-	align-items: center;
-	background-color: $color__lowlight;
-	color: $color__text__ondark;
-	display: flex;
-	height: $height__navbar;
-	padding: 0 $margin__x;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: 'Times New Roman', Times, serif;
-}
-
-main {
-	padding: $margin__x;
-}
-
-header {
-	text-align: center;
 }
 
 .product-cards {
