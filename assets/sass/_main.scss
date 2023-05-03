@@ -37,7 +37,6 @@ $margin__x: 16px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	text-decoration: inherit;
 }
 
 :root {
@@ -200,7 +199,7 @@ strong {
 		height: $height__navbar;
 		justify-content: center;
 		padding: 0 $margin__x;
-		text-decoration: underline;
+		text-decoration: none;
 		transition: color .2s;
 
 		&:hover {
@@ -241,4 +240,20 @@ strong {
 		flex-grow: 1;
 		padding: $margin__x;
 	}
+}
+
+[data-cart-counter]:not(:empty) {
+	align-items: center;
+	background-color: $color__lowlight;
+	border-radius: 50%;
+	bottom: .5em;
+	color: $color__text__ondark;
+	display: inline-flex;
+	font-size: .8em;
+	height: 1rem;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	width: 1rem;
 }
