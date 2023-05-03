@@ -1,5 +1,7 @@
 //#region State
-const products = await (await fetch(`/assets/data/products.json`)).json();
+const $base = document.querySelector(`base`);
+const base = $base?.getAttribute(`href`) || ``;
+const products = await (await fetch(`${base}assets/data/products.json`)).json();
 const productsById = products.reduce((productsById, product) => {
 	productsById[product.id] = product;
 	return productsById;

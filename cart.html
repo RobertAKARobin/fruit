@@ -29,7 +29,7 @@ title: Cart
 			>&plus;</button>
 		</td>
 
-		<td class="cell--number">$[[ cost ]].00</span></td>
+		<td class="cell--number">$[[ cost ]].00</td>
 	</tr>
 </template>
 
@@ -46,11 +46,13 @@ title: Cart
 	<tbody data-cart-products></tbody>
 
 	<tfoot>
-		<th colspan="3">Total</th>
+		<tr>
+			<th colspan="3">Total</th>
 
-		<th class="cell--number">
-			$<span data-cart-total></span>.00
-		</th>
+			<th class="cell--number">
+				$<span data-cart-total></span>.00
+			</th>
+		</tr>
 	</tfoot>
 </table>
 

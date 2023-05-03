@@ -4,16 +4,19 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-		<script type="module" src="/assets/index.js"></script>
-		<link rel="stylesheet" href="/assets/index.css" />
+		{% if jekyll.environment == "production" %}
+			<base href="/fruit/" />
+		{% endif %}
+		<script type="module" src="assets/index.js"></script>
+		<link rel="stylesheet" href="assets/index.css" />
 	</head>
 	<body>
 		<nav class="navbar">
-			<a href="/">{{ site.title }}</a>
+			<a href=".">{{ site.title }}</a>
 
 			<span class="navbar__spacer"></span>
 
-			<a href="/cart">
+			<a href="cart">
 				Cart
 				<output
 					data-cart-counter
